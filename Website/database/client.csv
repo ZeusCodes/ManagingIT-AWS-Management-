@@ -1,0 +1,3 @@
+cID,cFirstName,cLastName,cPhoneNo,cEmail,cGender,cIncome,cNetWorth,cRiskTol,cInvGoals
+1,John,Smith,0410999333,jsmith@gmail.com,M,60000,500000,Low,To make more money
+2,Mary,Watson,0411222333,mwatson@outlook.com,F,78000,840000,Moderate,Money for retirement
