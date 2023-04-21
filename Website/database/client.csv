@@ -1,3 +1,5 @@
 cID,cFirstName,cLastName,cPhoneNo,cEmail,cGender,cIncome,cNetWorth,cRiskTol,cInvGoals
-1,John,Smith,0410999333,jsmith@gmail.com,M,60000,500000,Low,To make more money
-2,Mary,Watson,0411222333,mwatson@outlook.com,F,78000,840000,Moderate,Money for retirement
+1,John,Smith,0410999333,jsmith@gmail.com,M,60000,500000,Low,"To make more money"
+2,Mary,Watson,0411222333,mwatson@outlook.com,F,78000,840000,Moderate,"Money for retirement"
+3,Riley,Testerman,0421117234,rtesterman@outlook.com,O,70000,950000,Moderate,"To pay off my uni fees"
+4,Olivia,Keys,0444758374,livkeys@gmail.com,F,35000,78000,Low,"Small investments to earn a little more"
