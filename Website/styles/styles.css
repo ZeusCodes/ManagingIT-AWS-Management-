@@ -1,9 +1,13 @@
 /* Across All Page Elemental Styles */
 body {
   background-color: #f5e8c7;
-  font-family: "Arial";
+  font-family: "Montserrat";
   background-image: url("./images/background-img.jpeg");
   background-size: 100% 100%;
+}
+
+label {
+  font-weight: bold;
 }
 
 table {
@@ -106,6 +110,47 @@ footer {
   display: block;
 }
 
+/* Manager Dashboard Styles */
+
+table.dashboardTable {
+  margin: auto;
+  color: #2c2e43;
+  background-color: #F5C6A5 !important;
+  border-radius: 10px;
+}
+
+.dashboardTable th {
+  color: #000000;
+  text-align: center;
+  padding: 1em 2em 1.5em;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.dashboardTable td {
+  padding: 1em 2em 1.5em;
+  vertical-align: top;
+  border: black solid;
+  border-width: 0 1px 3px;
+}
+
+.logoutBtn {
+  position: relative;
+  top: 3% !important;
+  left:85%
+}
+
+.doneSuccessfully {
+  color: #B1FFFD;
+  text-align: center;
+  font-size: 5em;
+}
+
+.failedProcess {
+  color: #9A1F40;
+  text-align: center;
+  font-size: 5em;
+}
 /* Home Page */
 .carouselImg {
   height: 40em;
@@ -569,3 +614,4 @@ aside h5 {
       2px 2px 2px #ffffff inset;
   }
 }
+
