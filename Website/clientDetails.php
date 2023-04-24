@@ -56,7 +56,7 @@
 
       $clientFile = 'database/client.csv';
       $portfolioFile = 'database/portfolio.csv';
-      $pID = "";
+      $cID = "";
 
       $searchClient = ""; 
 
@@ -109,7 +109,7 @@
                     $cInvGoals = $data[9];
                     // Get client pID
 
-                    $pID = $data[0];
+                    $cID = $data[0];
                 }
             
             }
@@ -249,7 +249,7 @@
 
                       // Search for the word in the row
 
-                      if (($pID == $data[0])) {
+                      if (($cID == $data[1])) {
                           //$found = true;
 
                           $pType = $data[2];
