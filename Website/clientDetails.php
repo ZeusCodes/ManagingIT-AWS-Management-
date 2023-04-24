@@ -60,23 +60,23 @@
 
       $searchClient = $_GET['cID']; //Client ID
 
-      $cName;
-      $cLName;
-      $cPhone;
-      $cEmail;
-      $cGender;
-      $cIncome;
-      $cWorth;
-      $cRiskTol;
-      $cInvGoals;
+      $cName = "";
+      $cLName = "";
+      $cPhone = "";
+      $cEmail = "";
+      $cGender = "";
+      $cIncome = "";
+      $cWorth = "";
+      $cRiskTol = "";
+      $cInvGoals = "";
 
-      $pType;
-      $pNoShares;
-      $pBDay;
-      $pBPrice;
-      $pCurrentVal;
-      $pInterest;
-      $pCapital;
+      $pType = "";
+      $pNoShares = "";
+      $pBDay = "";
+      $pBPrice = "";
+      $pCurrentVal = "";
+      $pInterest = "";
+      $pCapital = "";
 
     
 
