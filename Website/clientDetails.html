@@ -25,6 +25,126 @@
     <a href="clientReg.php"> Back</a>
     </h3>
     <section id="Application-Form">
+
+      <!-- Search bar -->
+
+      <form name="search" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+        <label for="cID">cID: </label>
+        <input
+              type="text"
+              name="cID"
+              id="cID"
+              pattern="[0-9]"
+              placeholder="cID"
+            />
+
+        <div class="row">
+          <div class="col-1">
+              <span id="Form-err"></span><br />
+              <button type="submit" name="search" value="Search" class="btn btn-primary"> Search </button>
+            </div>
+          <div class="col-2">
+              <span id="Form-err"></span><br />
+              <button type="submit" name="reset" value="Reset" class="btn btn-danger"> Reset </button>
+            </div>
+        </div> 
+      </form> 
+
+      <!-- Search -->
+
+      <?php
+
+      $clientFile = 'database/client.csv';
+      $portfolioFile = 'database/portfolio.csv';
+      $pID ;
+
+      $searchClient = $_GET['cID']; //Client ID
+
+      $cName;
+      $cLName;
+      $cPhone;
+      $cEmail;
+      $cGender;
+      $cIncome;
+      $cWorth;
+      $cRiskTol;
+      $cInvGoals;
+
+      $pType;
+      $pNoShares;
+      $pBDay;
+      $pBPrice;
+      $pCurrentVal;
+      $pInterest;
+      $pCapital;
+
+    
+
+    
+      // Finding client detail
+      
+      if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["search"]) && ($searchClient > 0))
+      {
+
+        if(($handle = fopen($clientFile, "r")) !== FALSE) {
+            $found = false;
+
+            // Loop through each row in the CSV file
+
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+
+                // Search for the word in the row
+
+                if (in_array($searchClient, $data)) {
+                    $found = true;
+
+                    $cName = $data[1];
+                    $cLName = $data[2];
+                    $cPhone = $data[3];
+                    $cEmail = $data[4];
+                    $cGender = $data[5];
+                    $cIncome = $data[6];
+                    $cWorth = $data[7];
+                    $cRiskTol = $data[8];
+                    $cInvGoals = $data[9];
+                    // Get client pID
+
+                    $pID = $data[0];
+                }
+            
+            }
+
+            fclose($handle);
+        }
+
+        
+      }
+
+      if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["Reset"]))
+      {
+      $cName;
+      $cLName;
+      $cPhone;
+      $cEmail;
+      $cGender;
+      $cIncome;
+      $cWorth;
+      $cRiskTol;
+      $cInvGoals;
+
+      $pType;
+      $pNoShares;
+      $pBDay;
+      $pBPrice;
+      $pCurrentVal;
+      $pInterest;
+      $pCapital;
+      }
+      
+    ?>
+  
+    <!-- Show result -->
+
     <div class="container">
         <div class="row">
           <div class="col-lg-6">
@@ -39,40 +159,65 @@
         </div>
 
         <div class="row">
+
           <div class="col-lg-3">
-            <label for="FName">First Name </label> <br />
-            Temm XYZ
+            <label for="fname">First Name </label> <br />
+            <?php
+                  echo "<p>". $cName . "</p>"; 
+            ?>
           </div>
+
           <div class="col-lg-3">
-            <label for="LName">Last Name </label> <br />
-            Lorem
+            <label for="lname">Last Name </label> <br />
+            <?php
+              echo "<p>". $cLName . "</p>"; 
+            ?>
           </div>
+
           <div class="col-lg-3">
-            <label for="Email">Email-id</label> <br />
-            Lorem@ipsum.com
+            <label for="email">Email Address</label> <br />
+            <?php
+              echo "<p>". $cEmail . "</p>"; 
+            ?>
           </div>
+
           <div class="col-lg-3">
-            <label for="PhNum">Phone Number</label> <br />
-            0923 3432
+            <label for="phone">Phone Number</label> <br />
+            <?php
+              echo "<p>". $cPhone . "</p>"; 
+            ?>
           </div>
+
         </div>
         
         <div class="row">
+
           <div class="col-lg-3">
-            <label for="FName">Income </label> <br />
-            3498
+            <label for="income">Income </label> <br />
+            <?php
+              echo "<p>". $cIncome . "</p>"; 
+            ?>
           </div>
+
           <div class="col-lg-3">
-            <label for="LName">Net Worth </label> <br />
-            500930
+            <label for="networth">Net Worth </label> <br />
+            <?php
+              echo "<p>". $cWorth . "</p>"; 
+            ?>
           </div>
+
           <div class="col-lg-3">
-            <label for="Email">Risk Tolerance</label> <br />
-            389309
+            <label for="risktol">Risk Tolerance</label> <br />
+            <?php
+              echo "<p>". $cRiskTol . "</p>"; 
+            ?>
           </div>
+
           <div class="col-lg-3">
-            <label for="PhNum">Investmennt Goals</label> <br />
-            "34kjbkrjbfkejrbfl"
+            <label for="goals">Investment Goals</label> <br />
+            <?php
+              echo "<p>". $cInvGoals . "</p>"; 
+            ?>
           </div>
         </div>
   
@@ -86,80 +231,58 @@
         <tr>
             <th scope="col"> Investment Type</th>
                 <th scope="col"> No of Shares </th>
-                <th scopes"col"> Buy Date </th>
+                <th scopes="col"> Buy Date </th>
                 <th scope="col"> Buy Price </th>
                 <th scope="col"> Current Value </th>
                 <th scope="col"> Interest </th>
                 <th scope="col"> Capital </th>
                 </tr>
 
+                <?php
 
-                <tr>
-                <td scope="col"> EOI Number </td>
-                <td scope="col"> Reference Number </td>
-                <td scopes"col"> Name </td>
-                <td scope="col"> DOB </td>
-                <td scope="col"> Gender </td>
-                <td scope="col"> Address </td>
-                <td scope="col"> Town </td>
-                </tr>
+                if(($handle = fopen($portfolioFile, "r")) !== FALSE) {
+                  //$found = false;
 
+                  // Loop through each row in the CSV file
 
-                <tr>
-                <td scope="col"> EOI Number </td>
-                <td scope="col"> Reference Number </td>
-                <td scopes"col"> Name </td>
-                <td scope="col"> DOB </td>
-                <td scope="col"> Gender </td>
-                <td scope="col"> Address </td>
-                <td scope="col"> Town </td>
-                </tr>
+                  while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 
+                      // Search for the word in the row
 
-                <tr>
-                <td scope="col"> EOI Number </td>
-                <td scope="col"> Reference Number </td>
-                <td scopes"col"> Name </td>
-                <td scope="col"> DOB </td>
-                <td scope="col"> Gender </td>
-                <td scope="col"> Address </td>
-                <td scope="col"> Town </td>
-                </tr>
+                      if (($pID == $data[0])) {
+                          //$found = true;
 
+                          $pType = $data[2];
+                          $pNoShares = $data[3];
+                          $pBDay = $data[4];
+                          $pBPrice = $data[5];
+                          $pCurrentVal = $data[6];
+                          $pInterest = $data[7];
+                          $pCapital = $data[8];
 
-                <tr>
-                <td scope="col"> EOI Number </td>
-                <td scope="col"> Reference Number </td>
-                <td scopes"col"> Name </td>
-                <td scope="col"> DOB </td>
-                <td scope="col"> Gender </td>
-                <td scope="col"> Address </td>
-                <td scope="col"> Town </td>
-                </tr>
+                          echo "<tr>";
+                          echo "<td scope='col'>". $data[2] ."</td>"; 
+                          echo "<td scope='col'>". $data[3] ."</td>";
+                          echo "<td scope='col'>". $data[4] ."</td>";
+                          echo "<td scope='col'>". $data[5] ."</td>";
+                          echo "<td scope='col'>". $data[6] ."</td>";
+                          echo "<td scope='col'>". $data[7] ."</td>";
+                          echo "<td scope='col'>". $data[8] ."</td>";
+                          echo "</tr>";
+                          
+                      }
+                  
+                  }
 
-
-                <tr>
-                    <td scope="col"> EOI Number </td>
-                    <td scope="col"> Reference Number </td>
-                    <td scopes"col"> Name </td>
-                    <td scope="col"> DOB </td>
-                    <td scope="col"> Gender </td>
-                    <td scope="col"> Address </td>
-                    <td scope="col"> Town </td>
-                </tr>
-
-
-                <tr>
-                <td scope="col"> EOI Number </td>
-                <td scope="col"> Reference Number </td>
-                <td scopes"col"> Name </td>
-                <td scope="col"> DOB </td>
-                <td scope="col"> Gender </td>
-                <td scope="col"> Address </td>
-                <td scope="col"> Town </td>
-                </tr>
+                  fclose($handle);
+                } 
+                
+                ?>
+                
             </table>
-        </section>             >
+            
+        </section>  
+        
     
     <footer>
         <div class="container-fluid">
