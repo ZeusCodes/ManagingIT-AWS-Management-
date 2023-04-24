@@ -56,9 +56,9 @@
 
       $clientFile = 'database/client.csv';
       $portfolioFile = 'database/portfolio.csv';
-      $pID ;
+      $pID = "";
 
-      $searchClient = $_GET['cID']; //Client ID
+      $searchClient = ""; 
 
       $cName = "";
       $cLName = "";
@@ -83,9 +83,9 @@
     
       // Finding client detail
       
-      if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["search"]) && ($searchClient > 0))
+      if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["search"]))
       {
-
+        $searchClient = $_GET['cID'];
         if(($handle = fopen($clientFile, "r")) !== FALSE) {
             $found = false;
 
