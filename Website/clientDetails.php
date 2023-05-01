@@ -279,6 +279,25 @@
                 ?>
                 
             </table>
+	    
+	    <!-- Delete -->
+	    
+	    <form name="delete" method="get" action="deleteClient.php" >
+		     
+		     <input
+			  type="hidden"
+			  name="cID"
+			  id="cID"
+			  value ="<?php echo $cID; ?>"
+			/>
+
+		      <div class="row">
+			<div class="col-1">
+			    <span id="Form-err"></span><br />
+			    <button type="submit" name="delete" value="Delete" class="btn btn-danger"> Delete client</button>
+			  </div>
+		      </div> 
+              </form> 
             
         </section>  
         
