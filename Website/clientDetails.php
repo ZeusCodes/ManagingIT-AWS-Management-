@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="description" content="Company Details" />
-    <meta name="keywords" content="Home Page, Oracle" />
-    <meta name="author" content="Pallab Paul" />
+    <meta name="description" content="Client Search" />
+    <meta name="keywords" content="Client search page" />
+    <meta name="author" content="Team 2 - Managing IT Projects" />
 
-    <title>Job Application</title>
+    <title>Client Search</title>
     
     <!-- Bootstrap CSS -->
     <link
@@ -17,7 +17,6 @@
     />
 
     <!-- CSS Applied -->
-    <link rel="stylesheet" href="./styles/authentication.css" />
     <link rel="stylesheet" href="./styles/styles.css" />
   </head>
 <body>
@@ -27,15 +26,15 @@
     <section id="Application-Form">
 
       <!-- Search bar -->
-
+	<h1>Client Search</h1>
+	<h5>Enter Client ID to begin</h5>
       <form name="search" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
-        <label for="cID">cID: </label>
+        <label for="cID">Client ID: </label>
         <input
               type="text"
               name="cID"
               id="cID"
               pattern="[0-9]"
-              placeholder="cID"
             />
 
         <div class="row">
@@ -148,7 +147,7 @@
     <div class="container">
         <div class="row">
           <div class="col-lg-6">
-            <h1>Contact Information</h1>
+            <h2>Client Information</h2>
           </div>
         </div>
 
@@ -290,7 +289,7 @@
           <i class="social-icon fab fa-twitter"></i>
           <i class="social-icon fab fa-instagram"></i>
           <i class="social-icon fas fa-envelope"></i>
-          <p>©Swinburne University Submission ©By</p>
+          <p>Asset & Wealth Services Inc. </p>
         </div>
       </footer>
   
