@@ -36,7 +36,7 @@
 
           <div class="row">
             <div class="col-lg-6">
-              <label for="fname">First Name <span>*</span></label> <br />
+              <label for="fname">First Name<span>*</span></label> <br />
               <input
                 type="text"
                 name="fname"
@@ -48,7 +48,7 @@
               />
             </div>
             <div class="col-lg-6">
-              <label for="lname">Last Name <span>*</span></label> <br />
+              <label for="lname">Last Name<span>*</span></label> <br />
               <input
                 type="text"
                 name="lname"
@@ -78,7 +78,7 @@
                 name="phone"
                 id="phone"
                 pattern="[0-9 ]{8,12}"
-                placeholder="Phone Number"
+                placeholder="Phone Number (#)"
                 required
               />
             </div>
@@ -118,25 +118,25 @@
 
           <div class="row">
             <div class="col-lg-6">
-              <label for="income">Income <span>*</span></label> <br />
+              <label for="income">Income<span>*</span></label> <br />
               <input
                 type="text"
                 name="income"
                 id="income"
                 pattern="[0-9]{1,20}"
-                placeholder="Income"
+                placeholder="Income ($)"
                 size="25"
                 required
               />
             </div>
             <div class="col-lg-6">
-              <label for="networth">Net Worth <span>*</span></label> <br />
+              <label for="networth">Net Worth<span>*</span></label> <br />
               <input
                 type="text"
                 name="networth"
                 id="networth"
                 pattern="[0-9]{1,20}"
-                placeholder="Net Worth"
+                placeholder="Net Worth ($)"
                 size="25"
                 required
               />
