@@ -31,6 +31,17 @@
               </div>
           </div>     
         </div>
+	      
+	              <h1>Client Search</h1>
+	            <h5>Enter Client ID to begin</h5>
+              <form name="search" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+              <label for="cID">Client ID: </label>
+              <input
+              type="text"
+              name="cID"
+              id="cID"
+              pattern="[0-9]"
+              />
 
 
         <div class="row">
@@ -124,17 +135,6 @@
               />
           </div>
         </div>
-
-        <h1>Client Search</h1>
-	            <h5>Enter Client ID to begin</h5>
-              <form name="search" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
-              <label for="cID">Client ID: </label>
-              <input
-              type="text"
-              name="cID"
-              id="cID"
-              pattern="[0-9]"
-              />
 
       </div>
       <div class="row">
