@@ -32,18 +32,6 @@
           </div>     
         </div>
 
-        <div class = "row">
-          <div class = "col-lg-6">
-              <label for = "CID">Client Id <span>*</span></label> <br />
-              <input
-                  type="number"
-                  name="Client-Id"
-                  id="CID"
-                  placeholder="Client Id"
-                  required
-              />
-          </div>
-        </div>
 
         <div class="row">
           <div class="col-lg-6">
@@ -137,6 +125,17 @@
           </div>
         </div>
 
+        <h1>Client Search</h1>
+	            <h5>Enter Client ID to begin</h5>
+              <form name="search" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+              <label for="cID">Client ID: </label>
+              <input
+              type="text"
+              name="cID"
+              id="cID"
+              pattern="[0-9]"
+              />
+
       </div>
       <div class="row">
         <div class="col-lg-6">
@@ -149,40 +148,54 @@
     </section>
 	
 	<?php
-		if(isset($_POST['update'])) {
-      $CID = $_POST['CID'];
-			$IType = $_POST['IType'];
-			$pNoShares = $_POST['pNoShares'];
-			$pBuyPrice = $_POST['pBuyPrice'];
-			$pCurrentVal = $_POST['pCurrentVal'];
-			$pInterest = $_POST['pInterest'];
-      $pCapital = $_POST['pCapital'];
-			
-			$file = fopen('database/portfolio.csv', 'a');
-			
-			$no_rows = count(file("database/portfolio.csv"));
-			if($no_rows > 1) {
-				$no_rows = ($no_rows - 1) + 1;
-			}
-			
-			$data = array(
-				'id'  =>  $no_rows,
-				'CID'  => $CID,
-				'IType'  => $IType,
-				'pNoShares'  => $pNoShares,
-				'pBuyPrice'  => $pBuyPrice,
-				'pCurrentVal'  => $pCurrentVal,
-				'pInterest'  => $pInterest,
-				'pCapital'  => $pCapital,
-			  );
-			
-			
-			
 
-			//write data to csv
-			fputcsv($file, $data);
-			echo "Successfully Updated Client Portfolio!";
-	   }
+if(isset($_GET['cID'])) {
+  // Open the CSV file
+  $file = fopen('database/portfolio.csv', 'r');
+  
+  // Find the row that matches the ID in the URL
+  while (($row = fgetcsv($file)) !== false) {
+      if ($row[0] == $_GET['id']) {
+          $data = $row;
+          break;
+      }
+  }
+  
+  // Close the CSV file
+  fclose($file);
+}
+if(isset($_POST['submit'])) {
+  // Open the CSV file in read/write mode
+  $file = fopen('database/portfolio.csv', 'r+');
+  
+  // Find the row that matches the ID in the URL and update it
+  while (($row = fgetcsv($file)) !== false) {
+      if ($row[0] == $_POST['cID']) {
+          $row[1] = $_POST['IType'];
+          $row[2] = $_POST['pNoShares'];
+          $row[3] = $_POST['pBuyDate'];
+          $row[4] = $_POST['pBuyPrice'];
+          $row[5] = $_POST['pCurrentVal'];
+          $row[6] = $_POST['pInterest'];
+          $row[7] = $_POST['pCapital'];
+          
+          
+          // Go back to the beginning of the row and write the updated data
+          fseek($file, -strlen(implode(',', $row)), SEEK_CUR);
+          fputcsv($file, $row);
+          
+          // Stop searching for the row
+          break;
+      }
+  }
+  
+  // Close the CSV file
+  fclose($file);
+  
+  // Redirect back to the original page
+  header('Location: clientDetails.php?id=' . $_POST['id']);
+  exit;
+}
 	?>
 
     <footer>
