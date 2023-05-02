@@ -196,7 +196,7 @@ if(isset($_GET['cID'])) {
     
     // Find the row that matches the ID in the URL
     while (($row = fgetcsv($file)) !== false) {
-        if ($row[0] == $_GET['id']) {
+        if ($row[0] == $_GET['cID']) {
             $data = $row;
             break;
         }
