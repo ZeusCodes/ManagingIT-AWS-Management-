@@ -156,18 +156,16 @@
                 required
               />
             </div>
-          </div>
-          <div class="row">
+            <div class="row">
             <div class="col-lg-6">
               <label for="risktol">Risk Tolerance<span>*</span></label> <br />
-              <input
-                type="text"
-                name="Risk Tolerance"
-                id="risktol"
-                placeholder="Risk Tolerance"
-                required
-              />
+              <select id="risktol" name="risktol">
+				            <option value="Low">Low</option>
+				             <option value="Moderate">Moderate</option>
+				            <option value="High">High</option>
+			        </select>
             </div>
+
             <div class="col-lg-6">
               <label for="goals">Investmennt Goals<span>*</span></label> <br />
               <input
@@ -215,7 +213,7 @@
 			$goals = $_POST['goals'];
     
         // Open the CSV file
-        $file = fopen('clients.csv', 'r+');
+        $file = fopen('database/clients.csv', 'r+');
     
         // Lock the file for exclusive access
         if (flock($file, LOCK_EX)) {
@@ -227,7 +225,7 @@
     
             // Find the client in the array by ID
             foreach ($clients as &$c) {
-                if ($c[0] == $client_id) {
+                if ($c[0] == $CID) {
                     // Update the client details
                     $c[1] = $fname ;
                     $c[2] = $lname;
@@ -261,7 +259,7 @@
         }
     } else {
         // Open the CSV file
-        $file = fopen('clients.csv', 'r');
+        $file = fopen('database/clients.csv', 'r');
     
         // Read the contents of the file into an array
         $clients = array();
@@ -273,12 +271,12 @@
         fclose($file);
     
         // Get the client ID from the query string
-        $client_id = $_GET['id'];
+        $CID = $_GET['CID'];
     
         // Find the client in the array by ID
         $client = null;
         foreach ($clients as $c) {
-            if ($c[0] == $client_id) {
+            if ($c[0] == $CID) {
                 $client = $c;
                 break;
             }
