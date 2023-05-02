@@ -190,13 +190,13 @@
 
 <?php
 
-if(isset($_GET['cID'])) {
+if(isset($_GET['search'])) {
     // Open the CSV file
     $file = fopen('database/client.csv', 'r');
     
     // Find the row that matches the ID in the URL
     while (($row = fgetcsv($file)) !== false) {
-        if ($row[0] == $_GET['cID']) {
+        if ($row[0] == $_GET['search']) {
             $data = $row;
             break;
         }
