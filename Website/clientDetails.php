@@ -72,6 +72,7 @@
       </nav>
     </header>
 
+    <section id="Application-Form">
       <!-- Search bar -->
 	<h1>Client Search</h1>
 	<h5>Enter Client ID to begin</h5>
