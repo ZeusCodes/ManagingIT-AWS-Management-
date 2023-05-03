@@ -152,6 +152,12 @@ table.dashboardTable {
   font-size: 5em;
 }
 /* Home Page */
+
+.update-client-label{
+  margin: 10px ;
+  padding: 10px ;
+}
+
 .carouselImg {
   height: 40em;
 }

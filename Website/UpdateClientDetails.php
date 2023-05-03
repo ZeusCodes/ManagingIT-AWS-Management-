@@ -18,8 +18,60 @@
     <link rel="stylesheet" href="./styles/styles.css" />
 </head>
 <body>
-	<h1>Client Search and Edit</h1>
-	<form method="post" action="">
+<header>
+      <nav
+        class="navbar navbar-expand-lg navbar-dark"
+        style="background-color: #394867"
+      >
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navigator"
+            aria-controls="navigator"
+            aria-expanded="true"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">
+            <img
+              src="./AWS.png"
+              alt="Logo"
+              class="d-inline-block align-text-center brand-logo"
+            />
+          </a>
+          <div class="collapse navbar-collapse" id="navigator">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="./clientDetails.php"
+                  >Client Details</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./clientReg.php"
+                  >Register New Client</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./UpdateClientDetails.html"
+                  >Update Client</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./portfolioReg.php"
+                  >Update Client Portfolio</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+	<form method="post" action="" style="margin:50px">
+    <h1>Client Search and Edit</h1>
 		<label for="client-id">Enter Client ID:</label>
 		<input type="text" name="client-id" id="client-id" required>
 		<input type="submit" name="search" value="Search">
@@ -48,31 +100,31 @@
 			}
 			if($found_client) {
 				echo '<form id="Application-Form" method="post" action="">';
-				echo '<label for="client-name">Client Name:</label>';
-				echo '<input type="text" name="client-name" id="name" value="'.$client_name.'" required><br>';
-                echo '<label for="client-lname">Client Last Name:</label>';
+				echo '<label for="client-name" style="margin: 10px; padding: 10px;">Client Name:</label>';
+				echo '<input type="text" name=" client-name" id="name" value="'.$client_name.'" required><br>';
+                echo '<label for="client-lname" style="margin: 10px; padding: 10px;">Client Last Name:</label>';
                 echo '<input type="text" name="client-lname" id="lname" value="'.$client_lname.'" required><br>';
-                echo '<label for="client-phone">Client Phone:</label>';
+                echo '<label for="client-phone" style="margin: 10px; padding: 10px;">Client Phone:</label>';
 				echo '<input type="tel" name="client-phone" id="phone" value="'.$client_phone.'" required><br>';
-				echo '<label for="client-email">Client Email:</label>';
+				echo '<label for="client-email" style="margin: 10px; padding: 10px;">Client Email:</label>';
 				echo '<input type="email" name="client-email" id="email" value="'.$client_email.'" required><br>';
-                echo '<label for="client-gender">Client Gender:</label>';
+                echo '<label for="client-gender" style="margin: 10px; padding: 10px;">Client Gender:</label>';
 				echo '<select id="gender" name="gender">';
 				echo '<option value="M" '.($gender == 'M' ? 'selected="selected"' : '').'>M</option>';
                 echo '<option value="F" '.($gender == 'F' ? 'selected="selected"' : '').'>F</option>';
                 echo '<option value="Other" '.($gender == 'Other' ? 'selected="selected"' : '').'>Other</option>';
                 echo '</select><br>';
-                echo '<label for="client-income">Client Income:</label>';
+                echo '<label for="client-income" style="margin: 10px; padding: 10px;">Client Income:</label>';
 				echo '<input type="text" name="client-income" id="income" value="'.$client_income.'" required><br>';
-                echo '<label for="client-networth">Client NetWorth:</label>';
+                echo '<label for="client-networth" style="margin: 10px; padding: 10px;">Client NetWorth:</label>';
 				echo '<input type="text" name="client-networth" id="networth" value="'.$client_networth.'" required><br>';
-                echo '<label for="risktol">Risk Tolerance:</label>';
+                echo '<label for="risktol" style="margin: 10px; padding: 10px;">Risk Tolerance:</label>';
                 echo '<select id="risktol" name="risktol">';
                 echo '<option value="Low" '.($risktol == 'Low' ? 'selected="selected"' : '').'>Low</option>';
                 echo '<option value="Moderate" '.($risktol == 'Moderate' ? 'selected="selected"' : '').'>Moderate</option>';
                 echo '<option value="High" '.($risktol == 'High' ? 'selected="selected"' : '').'>High</option>';
                 echo '</select><br>';
-                echo '<label for="client-goals">Client Investment Goals:</label>';
+                echo '<label for="client-goals" style="margin: 10px; padding: 10px;">Client Investment Goals:</label>';
 				echo '<input type="text" name="client-goals" id="goals" value="'.$client_goals.'" required><br>';
 				echo '<input type="hidden" name="id" value="'.$client_id.'">';
 				echo '<input type="submit" name="save" value="Save">';
