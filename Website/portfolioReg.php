@@ -56,13 +56,13 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./UpdateClientDetails.html"
+                <a class="nav-link" href="./UpdateClientDetails.php"
                   >Update Client</a
                 >
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./portfolioReg.php"
-                  >Update Client Portfolio</a
+                  >Register New Investment</a
                 >
               </li>
             </ul>

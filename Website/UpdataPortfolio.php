@@ -5,7 +5,7 @@
     <meta name="description" content="Update Portfolio">
     <meta name="keywords" content="Update Portfolio Page, Oracle">
     <meta name="author" content="Eshan Gulati"/>
-    <title>Update Client Portfolio Details</title>
+    <title>Register New Investment Details</title>
 
         <!-- Bootstrap CSS -->
         <link
