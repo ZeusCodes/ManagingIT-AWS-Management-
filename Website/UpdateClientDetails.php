@@ -167,15 +167,6 @@
     echo 'Client information updated successfully.';
 }
 	?>
-    <footer>
-      <div class="container-fluid">
-        <i class="social-icon fab fa-facebook-f"></i>
-        <i class="social-icon fab fa-twitter"></i>
-        <i class="social-icon fab fa-instagram"></i>
-        <i class="social-icon fas fa-envelope"></i>
-        <p>©Swinburne University Submission ©By</p>
-      </div>
-    </footer>
 
     <script src="./scripts/apply.js"></script>
     <script src="./scripts/dropdown.js"></script>
