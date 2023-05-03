@@ -19,198 +19,142 @@
       <link rel="stylesheet" href="./styles/styles.css" />
 
 </head>
+
 <body>
-     <section id="UpdatePortfolio-Form">
-      <input
-        id="completionSlider"
-        type="range"
-        min="1"
-        max="111"
-        step="10"
-        value="0"
-        disabled
-      />
-      <form
-        method="POST"
-        action="https://mercury.swin.edu.au/it000000/formtest.php"
-        id="update-portfolio"
-        >
-
-        <div class = "container">
-          <div class = "row">
-              <div class ="col-lg-6">
-                  <h1>Portfolio Information</h1>
-              </div>
-          </div>     
-        </div>
-
-        <div class = "row">
-          <div class = "col-lg-6">
-              <label for = "CID">Client Id <span>*</span></label> <br />
-              <input
-                  type="number"
-                  name="Client-Id"
-                  id="CID"
-                  placeholder="Client Id"
-                  required
-              />
+  <header>
+      <nav
+        class="navbar navbar-expand-lg navbar-dark"
+        style="background-color: #394867"
+      >
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navigator"
+            aria-controls="navigator"
+            aria-expanded="true"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">
+            <img
+              src="./AWS.png"
+              alt="Logo"
+              class="d-inline-block align-text-center brand-logo"
+            />
+          </a>
+          <div class="collapse navbar-collapse" id="navigator">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="./clientDetails.php"
+                  >Client Details</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./clientReg.php"
+                  >Register New Client</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./UpdateClientDetails.html"
+                  >Update Client</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./portfolioReg.php"
+                  >Update Client Portfolio</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
+      </nav>
+    </header>
 
-        <div class="row">
-          <div class="col-lg-6">
-              <label for="IType">Investment Type <span>*</span></label> <br />
-              <input
-                  type="text"
-                  name="Investment-Type"
-                  id="IType"
-                  pattern="[A-Za-z]{1,20}"
-                  placeholder="Investment Type"
-                  required
-              />
-          </div>
-        </div>
+    <form method="post" action="" style="margin:100px">
+    <h1>Portfolio Search and Edit</h1>
+		<label for="client-id">Enter Client ID:</label>
+		<input type="text" name="client-id" id="client-id" required>
+		<input type="submit" name="search" value="Search">
+	</form>
+	<form method="post" action="" style="margin:50px">
+    <h1>Client Search and Edit</h1>
+		<label for="client-id">Enter Client ID:</label>
+		<input type="text" name="client-id" id="client-id" required>
+		<input type="submit" name="search" value="Search">
+	</form>
+	
+	<?php
+	$portfolioFile = 'database/portfolio.csv';
+	if(isset($_POST['search'])) {
+		$client_id = $_POST['client-id'];
+		$portfolios = array_map('str_getcsv', file($portfolioFile));
+		$found_portfolio = false;
+		foreach($portfolios as $portfolio) {
+			if($portfolio[0] == $client_id) {
+				$found_portfolio = true;
+				$client_name = $portfolio[1];
+				$portfolio_type = $portfolio[2];
+				$portfolio_value = $portfolio[3];
+				$portfolio_return = $portfolio[4];
+				$portfolio_risk = $portfolio[5];
+				break;
+			}
+		}
+		if($found_portfolio) {
+			echo '<form id="Application-Form" method="post" action="">';
+			echo '<label for="client-name" style="margin: 10px; padding: 10px;">Client Name:</label>';
+			echo '<input type="text" name="client-name" id="name" value="'.$client_name.'" required><br>';
+			echo '<label for="portfolio-type" style="margin: 10px; padding: 10px;">Portfolio Type:</label>';
+			echo '<input type="text" name="portfolio-type" id="portfolio-type" value="'.$portfolio_type.'" required><br>';
+			echo '<label for="portfolio-value" style="margin: 10px; padding: 10px;">Portfolio Value:</label>';
+			echo '<input type="text" name="portfolio-value" id="portfolio-value" value="'.$portfolio_value.'" required><br>';
+			echo '<label for="portfolio-return" style="margin: 10px; padding: 10px;">Portfolio Return:</label>';
+			echo '<input type="text" name="portfolio-return" id="portfolio-return" value="'.$portfolio_return.'" required><br>';
+			echo '<label for="portfolio-risk" style="margin: 10px; padding: 10px;">Portfolio Risk:</label>';
+			echo '<input type="text" name="portfolio-risk" id="portfolio-risk" value="'.$portfolio_risk.'" required><br>';
+			echo '<input type="hidden" name="id" value="'.$client_id.'">';
+			echo '<input type="submit" name="save" value="Save">';
+			echo '</form>';
+		} else {
+			echo 'Portfolio not found.';
+		}
+	}
+	$portfolioFile = 'database/portfolio.csv';
+	if(isset($_POST['save'])) {
+		$client_id = $_POST['id'];
+		$client_name = $_POST['client-name'];
+		$portfolio_type = $_POST['portfolio-type'];
+		$portfolio_value = $_POST['portfolio-value'];
+		$portfolio_return = $_POST['portfolio-return'];
+		$portfolio_risk = $_POST['portfolio-risk'];
 
-        <div class="row">
-          <div class="col-lg-6">
-              <label for="pNoShares">Number of Shares <span>*</span></label> <br />
-              <input
-                  type="number"
-                  name="Number-Shares"
-                  id="pNoShares"
-                  placeholder="Number of Shares"
-                  required
-              />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-              <label for="pBuyDate">Date Bought <span>*</span></label> <br />
-              <input
-                  type="date"
-                  name="Date-Bought"
-                  id="pBuyDate"
-                  required
-              />
-              <span id="DOB-err"></span>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-              <label for="pBuyPrice">Price <span>*</span></label> <br />
-              <input
-                  type="number"
-                  name="Price"
-                  id="pBuyPrice"
-                  placeholder="Price"
-                  required
-              />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-              <label for="pCurrentVal">Current Value <span>*</span></label> <br />
-              <input
-                  type="number"
-                  name="Current-Value"
-                  id="pCurrentVal"
-                  placeholder="Current Value"
-                  required
-              />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-              <label for="pInterest">Interest <span>*</span></label> <br />
-              <input
-                  type="number"
-                  name="Interest"
-                  id="pInterest"
-                  placeholder="Interest"
-                  required
-              />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-              <label for="pCapital">Captial <span>*</span></label> <br />
-              <input
-                  type="number"
-                  name="Capital"
-                  id="pCapital"
-                  placeholder="Capital"
-                  required
-              />
-          </div>
-        </div>
-
-
-      <div class="row">
-        <div class="col-lg-6">
-          <span id="Form-err"></span><br />
-          <button type="submit" class="btn btn-primary">Update</button>
-        </div>
-      </div>
-
-    </form>
-
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // get form data
-    $cID = $_POST["Client-Id"];
-    $pInvType = $_POST["Investment-Type"];
-    $pNoShares = $_POST["Number-Shares"];
-    $pBuyDate = $_POST["Date-Bought"];
-    $pBuyPrice = $_POST["Price"];
-    $pCurrentVal = $_POST["Current-Value"];
-    $pInterest = $_POST["Interest"];
-    $pCapital = $_POST["Capital"];
-
-    // open portfolio.csv file in read mode
-    $file = fopen("Website/database/portfolio.csv", "r");
-
-    // open a temporary file in write mode
-    $tempFile = fopen("Website/database/temp.csv", "w");
-
-    // loop through the lines in the file
-    while (($data = fgetcsv($file)) !== FALSE) {
-        // check if the current line matches the client ID
-        if ($data[0] == $cID) {
-            // update the data
-            $data[1] = $pInvType;
-            $data[2] = $pNoShares;
-            $data[3] = $pBuyDate;
-            $data[4] = $pBuyPrice;
-            $data[5] = $pCurrentVal;
-            $data[6] = $pInterest;
-            $data[7] = $pCapital;
-        }
-        // write the line to the temporary file
-        fputcsv($tempFile, $data);
+		$portfolios = array_map('str_getcsv', file($portfolioFile));
+		$updated_portfolio = false;
+		foreach($portfolios as &$portfolio) {
+			if($portfolio[0] == $client_id) {
+				$portfolio[1] = $client_name;
+        $portfolio[2] = $client_email;
+        $updated_portfolio = true;
+        break;
+      }
     }
-
-    // close the files
-    fclose($file);
-    fclose($tempFile);
-
-    // delete the original file
-    unlink("Website/database/portfolio.csv");
-
-    // rename the temporary file to the original filename
-    rename("Website/database/temp.csv", "Website/database/portfolio.csv");
-
-    // redirect to the portfolio page
-    header("Location: Website/clientDetails.php");
-    exit();
-}
-?>
-
-
+    if($updated_portfolio) {
+      $fp = fopen($portfolioFile, 'w');
+      foreach($portfolios as $portfolio) {
+        fputcsv($fp, $portfolio);
+      }
+      fclose($fp);
+      echo "Portfolio for client $client_id has been updated.";
+    } else {
+      echo "Portfolio for client $client_id could not be found.";
+    }
+  } else {
+    echo "Client ID, name, and email must all be provided.";
+  }
+  ?>
 
     <footer>
       <div class="container-fluid">
