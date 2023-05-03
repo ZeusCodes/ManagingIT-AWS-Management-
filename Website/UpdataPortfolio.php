@@ -20,7 +20,63 @@
 
 </head>
 <body>
-     <section id="UpdatePortfolio-Form">
+<header>
+      <nav
+        class="navbar navbar-expand-lg navbar-dark"
+        style="background-color: #394867"
+      >
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navigator"
+            aria-controls="navigator"
+            aria-expanded="true"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">
+            <img
+              src="./AWS.png"
+              alt="Logo"
+              class="d-inline-block align-text-center brand-logo"
+            />
+          </a>
+          <div class="collapse navbar-collapse" id="navigator">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="./clientDetails.php"
+                  >Client Details</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./clientReg.php"
+                  >Register New Client</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./UpdateClientDetails.php"
+                  >Update Client</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./portfolioReg.php"
+                  >Register New Investment</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./UpdataPortfolio.php"
+                  >Update Portfolio Investment</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+     <section id="Application-Form">
 
       <form name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
 

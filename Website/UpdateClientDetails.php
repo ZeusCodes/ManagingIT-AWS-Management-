@@ -64,6 +64,11 @@
                   >Register New Investment</a
                 >
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./UpdataPortfolio.php"
+                  >Update Portfolio Investment</a
+                >
+              </li>
             </ul>
           </div>
         </div>
@@ -100,28 +105,27 @@
 			}
 			if($found_client) {
 				echo '<form id="Application-Form" method="post" action="">';
-				echo '<label for="client-name">Client Name:</label>';
-				echo '<input type="text" name="client-name" id="name" value="'.$client_name.'" required><br>';
-                echo '<label for="client-lname">Client Last Name:</label>';
+				echo '<label for="client-name" style="margin: 10px; padding: 10px;>Client Name:</label>';
+				echo '<input type="text" name="client-name" " id="name" value="'.$client_name.'" required><br>';
+                echo '<label for="client-lname" style="margin: 10px; padding: 10px;">Client Last Name:</label>';
                 echo '<input type="text" name="client-lname" id="lname" value="'.$client_lname.'" required><br>';
-                echo '<label for="client-phone">Client Phone:</label>';
+                echo '<label for="client-phone" style="margin: 10px; padding: 10px;">Client Phone:</label>';
 				echo '<input type="tel" name="client-phone" id="phone" value="'.$client_phone.'" required><br>';
-				echo '<label for="client-email">Client Email:</label>';
+				echo '<label style="margin: 10px; padding: 10px; for="client-email" style="margin: 10px; padding: 10px;">Client Email:</label>';
 				echo '<input type="email" name="client-email" id="email" value="'.$client_email.'" required><br>';
-                echo '<label for="client-gender">Client Gender:</label>';
-                echo '<label for="client-gender">Client Gender:</label>';
+                echo '<label style="margin: 10px; padding: 10px; for="client-gender">Client Gender:</label>';
                 echo '<input type="radio" name="client-gender" value="M" id="gender-m" '.($client_gender == 'M' ? 'checked' : '').' required>Male';
                 echo '<input type="radio" name="client-gender" value="F" id="gender-f" '.($client_gender == 'F' ? 'checked' : '').'>Female';
                 echo '<input type="radio" name="client-gender" value="Other" id="gender-other" '.($client_gender == 'Other' ? 'checked' : '').'>Other<br>';
-                echo '<label for="client-income">Client Income:</label>';
+                echo '<label style="margin: 10px; padding: 10px; for="client-income">Client Income:</label>';
 				echo '<input type="text" name="client-income" id="income" value="'.$client_income.'" required><br>';
-                echo '<label for="client-networth">Client NetWorth:</label>';
+                echo '<label style="margin: 10px; padding: 10px; for="client-networth">Client NetWorth:</label>';
 				echo '<input type="text" name="client-networth" id="networth" value="'.$client_networth.'" required><br>';
-                echo '<label for="risktol">Risk Tolerance:</label>';
+                echo '<label style="margin: 10px; padding: 10px; for="risktol">Risk Tolerance:</label>';
                 echo '<input type="radio" name="client-risktol" value="Low" id="risktol-l" '.($client_risktol == 'Low' ? 'checked' : '').' required>Low';
                 echo '<input type="radio" name="client-risktol" value="Moderate" id="risktol-m" '.($client_risktol == 'Moderate' ? 'checked' : '').'>Moderate';
                 echo '<input type="radio" name="client-risktol" value="High" id="risktol-h" '.($client_risktol == 'High' ? 'checked' : '').'>High<br>';
-                echo '<label for="client-goals">Client Investment Goals:</label>';
+                echo '<label style="margin: 10px; padding: 10px;for="client-goals">Client Investment Goals:</label>';
 				echo '<input type="text" name="client-goals" id="goals" value="'.$client_goals.'" required><br>';
 				echo '<input type="hidden" name="id" value="'.$client_id.'">';
 				echo '<input type="submit" name="save" value="Save">';

@@ -66,6 +66,11 @@
                   >Register New Investment</a
                 >
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./UpdataPortfolio.php"
+                  >Update Portfolio Investment</a
+                >
+              </li>
             </ul>
           </div>
         </div>
