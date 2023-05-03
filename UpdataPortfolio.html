@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="Update Portfolio">
     <meta name="keywords" content="Update Portfolio Page, Oracle">
-    <meta name="author" content="Eshan Gulati"/>
+    <meta name="author" content="Uddhav Grover"/>
     <title>Update Client Portfolio Details</title>
 
         <!-- Bootstrap CSS -->
@@ -159,6 +159,59 @@
 
     </form>
 
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // get form data
+    $cID = $_POST["Client-Id"];
+    $pInvType = $_POST["Investment-Type"];
+    $pNoShares = $_POST["Number-Shares"];
+    $pBuyDate = $_POST["Date-Bought"];
+    $pBuyPrice = $_POST["Price"];
+    $pCurrentVal = $_POST["Current-Value"];
+    $pInterest = $_POST["Interest"];
+    $pCapital = $_POST["Capital"];
+
+    // open portfolio.csv file in read mode
+    $file = fopen("Website/database/portfolio.csv", "r");
+
+    // open a temporary file in write mode
+    $tempFile = fopen("Website/database/temp.csv", "w");
+
+    // loop through the lines in the file
+    while (($data = fgetcsv($file)) !== FALSE) {
+        // check if the current line matches the client ID
+        if ($data[0] == $cID) {
+            // update the data
+            $data[1] = $pInvType;
+            $data[2] = $pNoShares;
+            $data[3] = $pBuyDate;
+            $data[4] = $pBuyPrice;
+            $data[5] = $pCurrentVal;
+            $data[6] = $pInterest;
+            $data[7] = $pCapital;
+        }
+        // write the line to the temporary file
+        fputcsv($tempFile, $data);
+    }
+
+    // close the files
+    fclose($file);
+    fclose($tempFile);
+
+    // delete the original file
+    unlink("Website/database/portfolio.csv");
+
+    // rename the temporary file to the original filename
+    rename("Website/database/temp.csv", "Website/database/portfolio.csv");
+
+    // redirect to the portfolio page
+    header("Location: Website/clientDetails.php");
+    exit();
+}
+?>
+
+
+
     <footer>
       <div class="container-fluid">
         <i class="social-icon fab fa-facebook-f"></i>
@@ -177,8 +230,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-  </body>
-</html>
+
     <script src="./scripts/apply.js"></script>
     <script src="./scripts/dropdown.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
