@@ -5,11 +5,9 @@
     <meta name="description" content="Edit Client">
     <meta name="keywords" content="Update Client Page, Oracle">
     <meta name="author" content="Eshan Gulati"/>
-    <title>Edit Client Data</title>
-    
-    
-    <!-- Bootstrap CSS -->
-    <link
+
+	<title>Client Search and Edit</title>
+	<link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -18,230 +16,104 @@
 
     <!-- CSS Applied -->
     <link rel="stylesheet" href="./styles/styles.css" />
-  </head>
 </head>
 <body>
-    <section id="EDITClient-Form">
-      <form name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
-
-      <div class = "container">
-        <div class = "row">
-            <div class ="col-lg-6">
-                <h1>Client Information</h1>
-            </div>
-        </div>     
-      </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <label for="fname">First Name <span>*</span></label> <br />
-            <input
-                type="text"
-                name="First-Name"
-                id="FName"
-                pattern="[A-Za-z]{1,20}"
-                placeholder="First Name"
-                size="25"
-                required
-            />
-        </div>
-    </div>
-
-    <div class = "row">
-            <div class="col-lg-6">
-            <label for="lname">Last Name <span>*</span></label> <br />
-            <input
-                type="text"
-                name="Last-Name"
-                id="LName"
-                pattern="[A-Za-z]{1,20}"
-                placeholder="Last Name"
-                size="25"
-                required
-            />
-        </div>
-    </div>
-
-    <div class="row">
-            <div class="col-lg-6">
-              <label for="email">Email Address<span>*</span></label> <br />
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email Address"
-                required
-              />
-            </div>
-
-    <div class="col-lg-6">
-              <label for="phone">Phone Number<span>*</span></label> <br />
-              <input
-                type="text"
-                name="phone"
-                id="phone"
-                pattern="[0-9 ]{8,12}"
-                placeholder="Phone Number"
-                required
-              />
-            </div>
-  
-            <div class="col-lg-6">
-              <fieldset>
-                <legend>Gender<span>*</span></legend>
-                <input
-                  type="radio"
-                  id="gender"
-                  name="Gender"
-                  value="M"
-                  required
-                />Male
-                <input
-                  type="radio"
-                  id="gender"
-                  name="Gender"
-                  value="F"
-                />Female
-                <input
-                  type="radio"
-                  id="gender"
-                  name="Gender"
-                  value="0"
-                />Other
-              </fieldset>
-            </div>
-          </div>
-  
-          <div class="row">
-            <div class="col-lg-6">
-              <h1>Financial Information</h1>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-6">
-              <label for="income">Income <span>*</span></label> <br />
-              <input
-                type="text"
-                name="Income"
-                id="income"
-                pattern="[0-9]{1,20}"
-                placeholder="Income"
-                size="25"
-                required
-              />
-            </div>
-            <div class="col-lg-6">
-              <label for="networth">Net Worth <span>*</span></label> <br />
-              <input
-                type="text"
-                name="Net Worth"
-                id="networth"
-                pattern="[0-9]{1,20}"
-                placeholder="Net Worth"
-                size="25"
-                required
-              />
-            </div>
-            <div class="row">
-            <div class="col-lg-6">
-              <label for="risktol">Risk Tolerance<span>*</span></label> <br />
-              <select id="risktol" name="risktol">
-				            <option value="Low">Low</option>
-				             <option value="Moderate">Moderate</option>
-				            <option value="High">High</option>
-			        </select>
-            </div>
-
-            <div class="col-lg-6">
-              <label for="goals">Investmennt Goals<span>*</span></label> <br />
-              <input
-                type="text"
-                name="Goals"
-                id="PhNum"
-                placeholder="Investmennt Goals"
-                required
-              />
-
-                    <!-- Search bar -->
-	            <h1>Client Search</h1>
-	            <h5>Enter Client ID to begin</h5>
-              <form name="search" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
-              <label for="cID">Client ID: </label>
-              <input
-              type="text"
-              name="cID"
-              id="cID"
-              pattern="[0-9]"
-              />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <span id="Form-err"></span><br />
-              <button type="submit" class="btn btn-primary">Update</button>
-            </div>
-          </div>
-        </div>
-      </form>
-      </section>
+	<h1>Client Search and Edit</h1>
+	<form method="post" action="">
+		<label for="client-id">Enter Client ID:</label>
+		<input type="text" name="client-id" id="client-id" required>
+		<input type="submit" name="search" value="Search">
+	</form>
 	
 	<?php
-
-<?php
-
-if(isset($_GET['search'])) {
-    // Open the CSV file
-    $file = fopen('database/client.csv', 'r');
-    
-    // Find the row that matches the ID in the URL
-    while (($row = fgetcsv($file)) !== false) {
-        if ($row[0] == $_GET['search']) {
-            $data = $row;
-            break;
+	$clientFile = 'database/client.csv';
+		if(isset($_POST['search'])) {
+			$client_id = $_POST['client-id'];
+			$clients = array_map('str_getcsv', file($clientFile));
+			$found_client = false;
+			foreach($clients as $client) {
+				if($client[0] == $client_id) {
+					$found_client = true;
+					$client_name = $client[1];
+                    $client_lname = $client[2];
+					$client_phone = $client[3];
+                    $client_email = $client[4];
+                    $client_gender = $client[5];
+                    $client_income = $client[6];
+                    $client_networth = $client[7];
+                    $client_risktol = $client[8];
+                    $client_goals = $client[9];
+					break;
+				}
+			}
+			if($found_client) {
+				echo '<form id="Application-Form" method="post" action="">';
+				echo '<label for="client-name">Client Name:</label>';
+				echo '<input type="text" name="client-name" id="name" value="'.$client_name.'" required><br>';
+                echo '<label for="client-lname">Client Last Name:</label>';
+                echo '<input type="text" name="client-lname" id="lname" value="'.$client_lname.'" required><br>';
+                echo '<label for="client-phone">Client Phone:</label>';
+				echo '<input type="tel" name="client-phone" id="phone" value="'.$client_phone.'" required><br>';
+				echo '<label for="client-email">Client Email:</label>';
+				echo '<input type="email" name="client-email" id="email" value="'.$client_email.'" required><br>';
+                echo '<label for="client-gender">Client Gender:</label>';
+				echo '<select id="gender" name="gender">';
+				echo '<option value="M" '.($gender == 'M' ? 'selected="selected"' : '').'>M</option>';
+                echo '<option value="F" '.($gender == 'F' ? 'selected="selected"' : '').'>F</option>';
+                echo '<option value="Other" '.($gender == 'Other' ? 'selected="selected"' : '').'>Other</option>';
+                echo '</select><br>';
+                echo '<label for="client-income">Client Income:</label>';
+				echo '<input type="text" name="client-income" id="income" value="'.$client_income.'" required><br>';
+                echo '<label for="client-networth">Client NetWorth:</label>';
+				echo '<input type="text" name="client-networth" id="networth" value="'.$client_networth.'" required><br>';
+                echo '<label for="risktol">Risk Tolerance:</label>';
+                echo '<select id="risktol" name="risktol">';
+                echo '<option value="Low" '.($risktol == 'Low' ? 'selected="selected"' : '').'>Low</option>';
+                echo '<option value="Moderate" '.($risktol == 'Moderate' ? 'selected="selected"' : '').'>Moderate</option>';
+                echo '<option value="High" '.($risktol == 'High' ? 'selected="selected"' : '').'>High</option>';
+                echo '</select><br>';
+                echo '<label for="client-goals">Client Investment Goals:</label>';
+				echo '<input type="text" name="client-goals" id="goals" value="'.$client_goals.'" required><br>';
+				echo '<input type="hidden" name="id" value="'.$client_id.'">';
+				echo '<input type="submit" name="save" value="Save">';
+				echo '</form>';
+			} else {
+				echo 'Client not found.';
+			}
         }
+    $clientFile = 'database/client.csv';
+	if(isset($_POST['save'])) {
+    $client_id = $_POST['id'];
+    $client_name = $_POST['client-name'];
+    $client_lname = $_POST['client-lname'];
+    $client_phone = $_POST['client-phone'];
+    $client_email = $_POST['client-email'];
+    $client_gender = $_POST['gender'];
+    $client_income = $_POST['client-income'];
+    $client_networth = $_POST['client-networth'];
+    $client_risktol = $_POST['risktol'];
+    $client_goals = $_POST['client-goals'];
+
+    $clients = array_map('str_getcsv', file($clientFile));
+    $updated_clients = [];
+    foreach($clients as $client) {
+        if($client[0] == $client_id) {
+            $updated_client = [$client_id, $client_name, $client_lname, $client_phone, $client_email, $client_gender, $client_income, $client_networth, $client_risktol, $client_goals];
+        } else {
+            $updated_client = $client;
+        }
+        $updated_clients[] = $updated_client;
     }
-    
-    // Close the CSV file
-    fclose($file);
+
+    $fp = fopen($clientFile, 'w');
+    foreach ($updated_clients as $client) {
+        fputcsv($fp, $client);
+    }
+    fclose($fp);
+
+    echo 'Client information updated successfully.';
 }
-
-if(isset($_POST['submit'])) {
-  // Open the CSV file in read/write mode
-  $file = fopen('data.csv', 'r+');
-  
-  // Find the row that matches the ID in the URL and update it
-  while (($row = fgetcsv($file)) !== false) {
-      if ($row[0] == $_POST['cID']) {
-          $row[1] = $_POST['fname'];
-          $row[2] = $_POST['lname'];
-          $row[3] = $_POST['phone'];
-          $row[4] = $_POST['email'];
-          $row[5] = $_POST['gender'];
-          $row[6] = $_POST['income'];
-          $row[7] = $_POST['networth'];
-          $row[8] = $_POST['risktol'];
-          $row[9] = $_POST['goals']
-          
-          // Go back to the beginning of the row and write the updated data
-          fseek($file, -strlen(implode(',', $row)), SEEK_CUR);
-          fputcsv($file, $row);
-          
-          // Stop searching for the row
-          break;
-      }
-  }
-  
-  // Close the CSV file
-  fclose($file);
-  
-  // Redirect back to the original page
-  header('Location: clientDetails.php?id=' . $_POST['id']);
-  exit;
-}
-?>
-
-
+	?>
     <footer>
       <div class="container-fluid">
         <i class="social-icon fab fa-facebook-f"></i>
