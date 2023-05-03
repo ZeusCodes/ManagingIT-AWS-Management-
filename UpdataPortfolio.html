@@ -95,7 +95,7 @@
 		foreach($portfolios as $portfolio) {
 			if($portfolio[0] == $client_id) {
 				$found_portfolio = true;
-				$client_name = $portfolio[1];
+				$client_id = $portfolio[1];
 				$portfolio_type = $portfolio[2];
 				$portfolio_value = $portfolio[3];
 				$portfolio_return = $portfolio[4];
@@ -105,7 +105,7 @@
 		}
 		if($found_portfolio) {
 			echo '<form id="Application-Form" method="post" action="">';
-			echo '<label for="client-name" style="margin: 10px; padding: 10px;">Client Name:</label>';
+			echo '<label for="client-id" style="margin: 10px; padding: 10px;">Client id:</label>';
 			echo '<input type="text" name="client-name" id="name" value="'.$client_name.'" required><br>';
 			echo '<label for="portfolio-type" style="margin: 10px; padding: 10px;">Portfolio Type:</label>';
 			echo '<input type="text" name="portfolio-type" id="portfolio-type" value="'.$portfolio_type.'" required><br>';
