@@ -116,7 +116,7 @@
 			}
 			if($found_client) {
 				echo '<form id="Application-Form" method="post" action="">';
-				echo '<label for="client-name" style="margin: 10px; padding: 10px;>Client Name:</label>';
+				echo '<label for="client-name" style="margin: 10px; padding: 10px;">Client Name:</label>';
 				echo '<input type="text" name="client-name" " id="name" value="'.$client_name.'" required><br>';
                 echo '<label for="client-lname" style="margin: 10px; padding: 10px;">Client Last Name:</label>';
                 echo '<input type="text" name="client-lname" id="lname" value="'.$client_lname.'" required><br>';
@@ -152,10 +152,10 @@
     $client_lname = $_POST['client-lname'];
     $client_phone = $_POST['client-phone'];
     $client_email = $_POST['client-email'];
-    $client_gender = $_POST['gender'];
+    $client_gender = $_POST['client-gender'];
     $client_income = $_POST['client-income'];
     $client_networth = $_POST['client-networth'];
-    $client_risktol = $_POST['risktol'];
+    $client_risktol = $_POST['client-risktol'];
     $client_goals = $_POST['client-goals'];
 
     $clients = array_map('str_getcsv', file($clientFile));
