@@ -334,7 +334,9 @@
             </table>
 	    
 	    <!-- Delete -->
-	    
+	    <div class="row">
+		<div class="col-7"></div>
+		<div class="col-2">
 	    <form name="delete" method="get" action="deleteClient.php" >
 		     
 		     <input
@@ -344,13 +346,26 @@
 			  value ="<?php echo $cID; ?>"
 			/>
 
-		      <div class="row">
-			<div class="col-1">
+		   
 			    <span id="Form-err"></span><br />
 			    <button type="submit" name="delete" value="Delete" class="btn btn-danger"> Delete client</button>
-			  </div>
-		      </div> 
-              </form> 
+              </form>
+		</div>
+		<div class="col-2">
+		<form name="deletep" method="get" action="deletePortfolio.php" >
+		     
+		     <input
+			  type="hidden"
+			  name="cID"
+			  id="cID"
+			  value ="<?php echo $cID; ?>"
+			/>
+
+			    <span id="Form-err"></span><br />
+			    <button type="submit" name="deletep" value="Delete" class="btn btn-danger"> Delete Portfolio</button> 
+              </form>
+		</div>
+		</div>
             
         </section>  
         
