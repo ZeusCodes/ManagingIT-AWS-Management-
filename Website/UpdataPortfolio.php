@@ -79,15 +79,9 @@
 		<input type="text" name="client-id" id="client-id" required>
 		<input type="submit" name="search" value="Search">
 	</form>
-	<form method="post" action="" style="margin:50px">
-    <h1>Client Search and Edit</h1>
-		<label for="client-id">Enter Client ID:</label>
-		<input type="text" name="client-id" id="client-id" required>
-		<input type="submit" name="search" value="Search">
-	</form>
 	
 	<?php
-	$portfolioFile = 'database/portfolio.csv';
+	$portfolio = 'database/portfolio.csv';
 	if(isset($_POST['search'])) {
 		$client_id = $_POST['client-id'];
 		$portfolios = array_map('str_getcsv', file($portfolio));
