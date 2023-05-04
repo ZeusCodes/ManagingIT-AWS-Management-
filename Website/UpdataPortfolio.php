@@ -90,7 +90,7 @@
 	$portfolioFile = 'database/portfolio.csv';
 	if(isset($_POST['search'])) {
 		$client_id = $_POST['client-id'];
-		$portfolios = array_map('str_getcsv', file($portfolioFile));
+		$portfolios = array_map('str_getcsv', file($portfolio));
 		$found_portfolio = false;
 		foreach($portfolios as $portfolio) {
 			if($portfolio[1] == $client_id) {
@@ -100,7 +100,6 @@
 				$inv_type = $portfolio[2];
 				$number_shares = $portfolio[3];
 				$buy_date = $portfolio[4];
-				$buy_price = $portfolio[5];
 				$buy_price = $portfolio[5];
 				$current_val = $portfolio[6];
 				$interest = $portfolio[7];
