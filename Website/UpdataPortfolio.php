@@ -138,7 +138,7 @@
 		$current_val = $_POST['current-val'];
 		$interest = $_POST['interest'];
 		$capital = $_POST['capital'];
-		$portfolios = array_map('str_getcsv', file($portfolioFile));
+		$portfolios = array_map('str_getcsv', file($portfolio));
 		$updated_portfolio = false;
 		foreach($portfolios as &$portfolio) {
 			if($portfolio[0] == $portfolio_id) {
