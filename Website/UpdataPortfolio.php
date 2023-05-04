@@ -95,7 +95,8 @@
 		foreach($portfolios as $portfolio) {
 			if($portfolio[1] == $client_id) {
 				$found_portfolio = true;
-				$portfolio_id = $portfolio[0]
+				$portfolio_id = $portfolio[0];
+				$client_id = $portfolio[1];
 				$inv_type = $portfolio[2];
 				$number_shares = $portfolio[3];
 				$buy_date = $portfolio[4];
