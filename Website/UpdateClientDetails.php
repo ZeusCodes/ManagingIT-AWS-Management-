@@ -74,12 +74,23 @@
         </div>
       </nav>
     </header>
-
-	<form method="post" action="" style="margin:50px">
-    <h1>Client Search and Edit</h1>
-		<label for="client-id">Enter Client ID:</label>
-		<input type="text" name="client-id" id="client-id" required>
-		<input type="submit" name="search" value="Search">
+	
+	<section id="Application-Form">
+	<h1>Update Client Details</h1>
+	<h5>Enter Client ID to begin</h5>
+	<form method="post" action="">
+		<label for="client-id">Client ID:</label>
+		<input type="text" name="client-id" id="client-id" pattern="[0-9]">
+		<div class="row">
+          <div class="col-1">
+              <span id="Form-err"></span><br />
+              <button type="submit" name="search" value="Search" class="btn btn-primary"> Search </button>
+            </div>
+          <div class="col-2">
+              <span id="Form-err"></span><br />
+              <button type="submit" name="reset" value="Reset" class="btn btn-danger"> Reset </button>
+            </div>
+        </div>
 	</form>
 	
 	<?php
@@ -128,7 +139,7 @@
                 echo '<label style="margin: 10px; padding: 10px;for="client-goals">Client Investment Goals:</label>';
 				echo '<input type="text" name="client-goals" id="goals" value="'.$client_goals.'" required><br>';
 				echo '<input type="hidden" name="id" value="'.$client_id.'">';
-				echo '<input type="submit" name="save" value="Save">';
+				echo '<input type="submit" name="save" value="Save" class="btn btn-primary">';
 				echo '</form>';
 			} else {
 				echo 'Client not found.';
@@ -167,6 +178,7 @@
     echo 'Client information updated successfully.';
 }
 	?>
+	</section>
 
     <script src="./scripts/apply.js"></script>
     <script src="./scripts/dropdown.js"></script>
