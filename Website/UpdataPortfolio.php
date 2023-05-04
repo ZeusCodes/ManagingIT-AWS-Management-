@@ -139,27 +139,30 @@
 		$interest = $_POST['interest'];
 		$capital = $_POST['capital'];
 		$portfolios = array_map('str_getcsv', file($portfolio));
+		$portfolio_str = ' '.join(str(x) for x in $portfolios);
 		$updated_portfolio = false;
-		foreach($portfolios as $portfolio) {
+		foreach($portfolios as &$portfolio) {
 			if($portfolio[0] == $portfolio_id) {
-				$portfolio_arr = [$portfolio_id, $client_id, $inv_type, $number_shares, $buy_date, $buy_price, $current_val, $interest, $capital];
-			} else {
-				$portfolio_arr = $portfolio;
-			}
-			$portfolio_arr[] = $portfolio_arr;
-		}
-		
-		
-		$portfolio_str = ' '.join(str(x) for x in $portfolio_arr);
-    		$fp = fopen($portfolio, 'w');
-    		foreach ($portfolio_str as $portfolio) {
-        	fputcsv($fp, $portfolio);
-    	}
-    	fclose($fp);
-
+				$portfolio[1] = $client_id;
+        	$updated_portfolio = true;
+        break;
+      }
+    }
+    if($updated_portfolio) {
+      $fp = fopen($portfolio, 'w');
+	    
+      foreach($portfolio_str as $portfolio) {
+        fputcsv($fp, $portfolio);
+      }
+      fclose($fp);
       echo "Portfolio for client $client_id has been updated.";
-}
-?>
+    } else {
+      echo "Portfolio for client $client_id could not be found.";
+    }
+  } else {
+    echo "All updates must be provided.";
+  }
+  ?>
 
     <footer>
       <div class="container-fluid">
