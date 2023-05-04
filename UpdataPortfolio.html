@@ -93,51 +93,64 @@
 		$portfolios = array_map('str_getcsv', file($portfolioFile));
 		$found_portfolio = false;
 		foreach($portfolios as $portfolio) {
-			if($portfolio[0] == $client_id) {
+			if($portfolio[1] == $client_id) {
 				$found_portfolio = true;
+				$portfolio_id = $portfolio[0]
 				$client_id = $portfolio[1];
-				$portfolio_type = $portfolio[2];
-				$portfolio_value = $portfolio[3];
-				$portfolio_return = $portfolio[4];
-				$portfolio_risk = $portfolio[5];
+				$inv_type = $portfolio[2];
+				$number_shares = $portfolio[3];
+				$buy_date = $portfolio[4];
+				$buy_price = $portfolio[5];
+				$buy_price = $portfolio[5];
+				$current_val = $portfolio[6];
+				$interest = $portfolio[7];
+				$capital = $portfolio[8];
+
 				break;
 			}
 		}
-		if($found_portfolio) {
-			echo '<form id="Application-Form" method="post" action="">';
-			echo '<label for="client-id" style="margin: 10px; padding: 10px;">Client id:</label>';
-			echo '<input type="text" name="client-name" id="name" value="'.$client_name.'" required><br>';
-			echo '<label for="portfolio-type" style="margin: 10px; padding: 10px;">Portfolio Type:</label>';
-			echo '<input type="text" name="portfolio-type" id="portfolio-type" value="'.$portfolio_type.'" required><br>';
-			echo '<label for="portfolio-value" style="margin: 10px; padding: 10px;">Portfolio Value:</label>';
-			echo '<input type="text" name="portfolio-value" id="portfolio-value" value="'.$portfolio_value.'" required><br>';
-			echo '<label for="portfolio-return" style="margin: 10px; padding: 10px;">Portfolio Return:</label>';
-			echo '<input type="text" name="portfolio-return" id="portfolio-return" value="'.$portfolio_return.'" required><br>';
-			echo '<label for="portfolio-risk" style="margin: 10px; padding: 10px;">Portfolio Risk:</label>';
-			echo '<input type="text" name="portfolio-risk" id="portfolio-risk" value="'.$portfolio_risk.'" required><br>';
-			echo '<input type="hidden" name="id" value="'.$client_id.'">';
-			echo '<input type="submit" name="save" value="Save">';
-			echo '</form>';
+		if ($found_portfolio) {
+			echo '<form id="Portfolio-Update-Form" method="post" action="">';
+  			echo '<label for="client-id" style="margin: 10px; padding: 10px;">Client id:</label>';
+  			echo '<input type="text" name="client-id" id="client-id" value="'.$client_id.'" required><br>';
+  			echo '<label for="inv-type" style="margin: 10px; padding: 10px;">Investment Type Type:</label>';
+ 	 		echo '<input type="text" name="inv-type" id="inv-type" value="'.$inv_type.'" required><br>';
+  			echo '<label for="number-shares" style="margin: 10px; padding: 10px;">Number of shares:</label>';
+  			echo '<input type="int" name="number-shares" id="number-shares" value="'.$number_shares.'" required><br>';
+  			echo '<label for="buy-date" style="margin: 10px; padding: 10px;">Date Bought:</label>';
+  			echo '<input type="date" name="buy-date" id="buy-date" value="'.$buy_date.'" required><br>';
+ 		 	echo '<label for="buy-price" style="margin: 10px; padding: 10px;">Buy Price:</label>';
+  			echo '<input type="number" name="buy-price" id="buy-price" value="'.$buy_price.'" required><br>';
+ 		 	echo '<label for="current-val" style="margin: 10px; padding: 10px;">Current Value:</label>';
+  			echo '<input type="number" name="current-val" id="current-val" value="'.$current_val.'" required><br>';
+  			echo '<label for="interest" style="margin: 10px; padding: 10px;">Interest:</label>';
+ 			echo '<input type="number" name="interest" id="interest" value="'.$interest.'" required><br>';
+  			echo '<label for="capital" style="margin: 10px; padding: 10px;">Capital:</label>';
+  			echo '<input type="number" name="capital" id="capital" value="'.$capital.'" required><br>';
+  			echo '<input type="hidden" name="portfolio-id" value="'.$portfolio_id.'">';
+  			echo '<input type="submit" name="save" value="Save">';
+ 			echo '</form>';
 		} else {
 			echo 'Portfolio not found.';
 		}
 	}
 	$portfolioFile = 'database/portfolio.csv';
 	if(isset($_POST['save'])) {
-		$client_id = $_POST['id'];
-		$client_name = $_POST['client-name'];
-		$portfolio_type = $_POST['portfolio-type'];
-		$portfolio_value = $_POST['portfolio-value'];
-		$portfolio_return = $_POST['portfolio-return'];
-		$portfolio_risk = $_POST['portfolio-risk'];
-
+		$portfolio_id = $_POST['portfolio-id'];
+		$client_id = $_POST['client-id'];
+		$inv_type = $_POST['inv-type'];
+		$number_shares = $_POST['number-shares'];
+		$buy_date = $_POST['buy-date'];
+		$buy_price = $_POST['buy-price'];
+		$current_val = $_POST['current-val'];
+		$interest = $_POST['interest'];
+		$capital = $_POST['capital'];
 		$portfolios = array_map('str_getcsv', file($portfolioFile));
 		$updated_portfolio = false;
 		foreach($portfolios as &$portfolio) {
-			if($portfolio[0] == $client_id) {
+			if($portfolio[0] == $portfolio_id) {
 				$portfolio[1] = $client_name;
-        $portfolio[2] = $client_email;
-        $updated_portfolio = true;
+        	$updated_portfolio = true;
         break;
       }
     }
@@ -152,7 +165,7 @@
       echo "Portfolio for client $client_id could not be found.";
     }
   } else {
-    echo "Client ID, name, and email must all be provided.";
+    echo "All updates must be provided.";
   }
   ?>
 
