@@ -150,9 +150,9 @@
 		}
 		
 		
-		
+		$portfolio_str = ' '.join(str(x) for x in $portfolio_arr);
     		$fp = fopen($portfolio, 'w');
-    		foreach ($portfolio_arr as $portfolio) {
+    		foreach ($portfolio_str as $portfolio) {
         	fputcsv($fp, $portfolio);
     	}
     	fclose($fp);
