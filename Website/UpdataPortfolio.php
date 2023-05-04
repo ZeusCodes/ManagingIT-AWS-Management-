@@ -127,7 +127,7 @@
 			echo 'Portfolio not found.';
 		}
 	}
-	$portfolioFile = 'database/portfolio.csv';
+	$portfolio = 'database/portfolio.csv';
 	if(isset($_POST['save'])) {
 		$portfolio_id = $_POST['portfolio-id'];
 		$client_id = $_POST['client-id'];
@@ -142,13 +142,13 @@
 		$updated_portfolio = false;
 		foreach($portfolios as &$portfolio) {
 			if($portfolio[0] == $portfolio_id) {
-				$portfolio[1] = $client_name;
+				$portfolio[1] = $client_id;
         	$updated_portfolio = true;
         break;
       }
     }
     if($updated_portfolio) {
-      $fp = fopen($portfolioFile, 'w');
+      $fp = fopen($portfolio, 'w');
       foreach($portfolios as $portfolio) {
         fputcsv($fp, $portfolio);
       }
