@@ -106,7 +106,7 @@
 			echo '<form id="Portfolio-Update-Form" method="post" action="">';
   			echo '<label for="client-id" style="margin: 10px; padding: 10px;">Client id:</label>';
   			echo '<input type="text" name="client-id" id="client-id" value="'.$client_id.'" required><br>';
-  			echo '<label for="inv-type" style="margin: 10px; padding: 10px;">Investment Type Type:</label>';
+  			echo '<label for="inv-type" style="margin: 10px; padding: 10px;">Investment Type:</label>';
  	 		echo '<input type="text" name="inv-type" id="inv-type" value="'.$inv_type.'" required><br>';
   			echo '<label for="number-shares" style="margin: 10px; padding: 10px;">Number of shares:</label>';
   			echo '<input type="int" name="number-shares" id="number-shares" value="'.$number_shares.'" required><br>';
