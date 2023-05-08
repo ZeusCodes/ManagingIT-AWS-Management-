@@ -512,7 +512,7 @@ aside h5 {
 /* animations */
 
 /* logo animation  */
-@keyframes logo {
+/* @keyframes logo {
   0% {
     left: 0%;
     top: 0%;
@@ -525,7 +525,7 @@ aside h5 {
     left: 0%;
     top: 0%;
   }
-}
+} */
 
 /* job page animation  */
 @keyframes revealBlock {
